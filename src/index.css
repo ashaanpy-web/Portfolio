@@ -1,12 +1,23 @@
 @import "tailwindcss";
-@import "tailwindcss";
 
-html,
-body,
-#root {
-  margin: 0;
-  padding: 0;
+@theme {
+  --font-chakra: "Chakra Petch", sans-serif;
+  --font-space: "Space Grotesk", sans-serif;
+}
+/* GLOBAL SCROLL CORRECTION */
+html {
+  scroll-behavior: smooth;
+  background-color: #020617; /* Slate 950 base */
+}
+
+/* DYNAMIC AMBIENT BACKDROP PIPELINE */
+.scroll-glow-bg {
+  position: fixed;
+  inset: 0;
   width: 100%;
-  height: 100%;
-  background-color: #020617; /* Slate-950 fallback */
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1; /* SpaceBG ke upar aur hardware components ke neche */
+  mix-blend-mode: plus-lighter; /* Ambient values ko stars ke sath seamlessly fuse karne ke liye */
+  transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
