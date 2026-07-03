@@ -3,6 +3,7 @@ import SpaceBG from "./components/SpaceBG";
 import OrbitSystem from "./components/OrbitSystem";
 import AboutBento from "./components/AboutBento";
 import TechConveyorBelt from "./components/TechConveyorBelt";
+import ProjectsShowcase from "./components/ProjectsShowcase";
 import "./index.css";
 
 /**
@@ -200,6 +201,7 @@ export default function App() {
         <div className="relative">
           <AboutBento />
           <TechConveyorBelt />
+          <ProjectsShowcase />
         </div>
       </div>
     </div>
