@@ -1,23 +1,95 @@
 @import "tailwindcss";
 
+/* ── Theme Tokens ──────────────────────────────────────────────── */
 @theme {
   --font-chakra: "Chakra Petch", sans-serif;
   --font-space: "Space Grotesk", sans-serif;
-}
-/* GLOBAL SCROLL CORRECTION */
-html {
-  scroll-behavior: smooth;
-  background-color: #020617; /* Slate 950 base */
+
+  --color-slate-950: #020617;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-indigo-500: #6366f1;
 }
 
-/* DYNAMIC AMBIENT BACKDROP PIPELINE */
-.scroll-glow-bg {
-  position: fixed;
+/* ── Global Resets ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  background-color: #020617;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ── Custom Scrollbar (Dark Theme) ────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4;
+}
+
+/* ── Selection ────────────────────────────────────────────────── */
+::selection {
+  background-color: rgba(6, 182, 212, 0.3);
+  color: #ffffff;
+}
+
+/* ── Performance: Force GPU layer for glow overlay ────────────── */
+.glow-overlay {
+  will-change: opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ── Hero Wrapper: GPU-composited layer ───────────────────────── */
+.hero-layer {
+  will-change: opacity, transform;
+  transform: translateZ(0);
+}
+
+/* ── Bento card: subtle inner glow on hover ──────────────────── */
+.bento-card-glow::before {
+  content: "";
+  position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100vh;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(6, 182, 212, 0.04) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 300ms ease;
   pointer-events: none;
-  z-index: 1; /* SpaceBG ke upar aur hardware components ke neche */
-  mix-blend-mode: plus-lighter; /* Ambient values ko stars ke sath seamlessly fuse karne ke liye */
-  transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.bento-card-glow:hover::before {
+  opacity: 1;
+}
+
+/* ── Orbit ring pulse animation ───────────────────────────────── */
+@keyframes orbit-pulse {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.orbit-ring-pulse {
+  animation: orbit-pulse 4s ease-in-out infinite;
 }
