@@ -10,26 +10,29 @@ const PROJECTS = [
     hex: "#06b6d4",
     hoverBorder: "hover:border-cyan-500/50",
     tags: ["React.js", "Tailwind v4", "OpenWeather API", "Framer Motion"],
+    liveUrl: "https://inquisitive-flan-879b24.netlify.app/",
   },
   {
     id: "02",
-    title: "Amazon Ecosystem Clone",
+    title: "Flex Tracker",
     description:
-      "A heavy-duty, pixel-perfect structural clone of the Amazon marketplace interface. Built to demonstrate mastery over complex global state data management, fluid responsive display lattices, and dynamic interactive shopping modules.",
+      "A high-performance modern fitness ecosystem designed to optimize tracking metrics and workout routines. Implements dynamic progress state analytics, interactive target logging systems, and fluid reactive UI architecture tailored for absolute performance.",
     color: "orange",
     hex: "#f97316",
     hoverBorder: "hover:border-orange-500/50",
     tags: ["React.js", "Tailwind CSS", "Context API", "Local Storage Engine"],
+    liveUrl: "https://ubiquitous-cat-f5fa76.netlify.app/",
   },
   {
     id: "03",
-    title: "YT Music Audio Clone",
+    title: "Nexus 3D E-Commerce Store",
     description:
-      "A high-fidelity structural clone of the YT Music interface focusing on interactive audio streaming pipelines. Engineered with unified context music controllers, reactive background asset ambient color matching, and custom playlist structures.",
+      "An immersive, interactive 3D animated digital showroom showcasing next-gen electronics. Engineered with WebGL-backed product viewing spaces, micro-soldering gear showcases, and custom responsive animation states using modular UI structures.",
     color: "red",
     hex: "#ef4444",
     hoverBorder: "hover:border-red-500/50",
-    tags: ["React.js", "Web Audio API", "Tailwind CSS", "Lucide Icons"],
+    tags: ["React.js", "Three.js", "React Three Fiber", "Tailwind CSS"],
+    liveUrl: "https://sprightly-granita-7a510c.netlify.app/",
   },
 ];
 
@@ -37,7 +40,7 @@ export default function ProjectsShowcase() {
   return (
     <section className="relative w-full py-24 pointer-events-auto z-20">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        
+
         {/* Section Header */}
         <div className="mb-16 text-center md:text-left">
           <span className="text-cyan-400 font-space tracking-[0.22em] text-xs uppercase font-semibold block mb-2">
@@ -73,7 +76,9 @@ export default function ProjectsShowcase() {
 
                   {/* Interactive Controls */}
                   <a
-                    href="#"
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 group-hover:bg-white group-hover:text-slate-950 transition-all duration-300 group-hover:scale-110 active:scale-95 text-white"
                   >
                     <ArrowUpRight
