@@ -1,4 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { premiumViewportVariants } from "../utils/animations";
 
 const PROJECTS = [
   {
@@ -35,7 +37,14 @@ const PROJECTS = [
 
 export default function ProjectsShowcase() {
   return (
-    <section className="relative w-full py-24 pointer-events-auto z-20 bg-transparent">
+    <motion.section 
+      variants={premiumViewportVariants}
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: false, amount: 0.15 }}
+      className="relative w-full py-24 pointer-events-auto z-20 bg-transparent"
+    >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
 
         {/* Section Header */}
@@ -117,6 +126,6 @@ export default function ProjectsShowcase() {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

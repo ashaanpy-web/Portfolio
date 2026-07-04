@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { motion, useInView, useMotionValue, useVelocity, useTransform, useSpring, useAnimation } from "framer-motion";
+import { premiumViewportVariants } from "../utils/animations";
 
 export default function AboutCard() {
   const sectionRef = useRef(null);
@@ -69,7 +70,15 @@ export default function AboutCard() {
   };
 
   return (
-    <section ref={sectionRef} className="relative w-full min-h-[100vh] flex items-center py-24 pointer-events-auto z-20">
+    <motion.section 
+      ref={sectionRef} 
+      variants={premiumViewportVariants}
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: false, amount: 0.15 }}
+      className="relative w-full min-h-[100vh] flex items-center py-24 pointer-events-auto z-20"
+    >
       
       {/* LEFT COLUMN: STATIC GRID CONTEXT */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -148,6 +157,6 @@ export default function AboutCard() {
         </div>
       </div>
 
-    </section>
+    </motion.section>
   );
 }

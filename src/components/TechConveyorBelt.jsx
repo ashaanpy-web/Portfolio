@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { premiumViewportVariants } from "../utils/animations";
 
 const TECH_ITEMS = [
   "HTML5",
@@ -29,7 +30,14 @@ export default function TechConveyorBelt() {
   );
 
   return (
-    <section className="relative w-full h-40 md:h-48 overflow-hidden pointer-events-auto z-20 flex items-center justify-center bg-transparent">
+    <motion.section 
+      variants={premiumViewportVariants}
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: false, amount: 0.4 }}
+      className="relative w-full h-40 md:h-48 overflow-hidden pointer-events-auto z-20 flex items-center justify-center bg-transparent"
+    >
       <div className="absolute top-1/2 left-[-5vw] w-[110vw] -translate-y-1/2 rotate-[-2.5deg] bg-[#f97316] shadow-2xl shadow-orange-500/20 flex items-center h-20 md:h-24">
         <motion.div
           className="flex whitespace-nowrap items-center w-max"
@@ -48,6 +56,6 @@ export default function TechConveyorBelt() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

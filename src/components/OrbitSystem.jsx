@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
+import { motion } from "framer-motion";
+import { premiumViewportVariants } from "../utils/animations";
 import {
   Atom,
   Server,
@@ -135,7 +137,12 @@ function HeroCenterText() {
  */
 export default function OrbitSystem() {
   return (
-    <div
+    <motion.section
+      variants={premiumViewportVariants}
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: true }}
       className="absolute inset-0 w-full h-full pointer-events-none hero-layer"
       aria-hidden="true"
     >
@@ -167,6 +174,6 @@ export default function OrbitSystem() {
           />
         ))}
       </Canvas>
-    </div>
+    </motion.section>
   );
 }
