@@ -266,12 +266,19 @@ export default function AboutBento() {
             {/* CTA micro-interactive button */}
             <button
               id="cta-contact-btn"
-              className="relative z-10 flex items-center justify-center p-4 rounded-2xl bg-white text-slate-950 group-hover:bg-cyan-400 group-hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer shadow-lg shadow-white/10 shrink-0"
+              className="relative z-10 flex items-center justify-center w-14 h-14 rounded-full bg-white/5 border border-white/10 text-white group-hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer shadow-lg shadow-white/5 shrink-0 pointer-events-auto"
               aria-label="Start a project with Ashaan"
+              style={{ "--accent-rgb": "6, 182, 212" }}
             >
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[20px] transition-all duration-500 ease-out pointer-events-none rounded-full"
+                style={{
+                  background: "radial-gradient(circle, rgba(var(--accent-rgb), 0.25) 0%, rgba(var(--accent-rgb), 0.05) 50%, transparent 80%)",
+                }}
+              />
               <ArrowUpRight
                 size={20}
-                className="group-hover:rotate-45 transition-transform duration-300"
+                className="relative z-10 group-hover:rotate-45 transition-transform duration-300"
               />
             </button>
           </BentoCard>

@@ -8,7 +8,6 @@ const PROJECTS = [
       "An advanced real-time meteorological portal featuring a high-fidelity liquid glass design system. Implements hardware-accelerated backdrop blur filters, smooth meteorological vector changes, and precise geolocation state synchronization pipelines.",
     color: "cyan",
     hex: "#06b6d4",
-    hoverBorder: "hover:border-cyan-500/50",
     tags: ["React.js", "Tailwind v4", "OpenWeather API", "Framer Motion"],
     liveUrl: "https://inquisitive-flan-879b24.netlify.app/",
   },
@@ -19,7 +18,6 @@ const PROJECTS = [
       "A high-performance modern fitness ecosystem designed to optimize tracking metrics and workout routines. Implements dynamic progress state analytics, interactive target logging systems, and fluid reactive UI architecture tailored for absolute performance.",
     color: "orange",
     hex: "#f97316",
-    hoverBorder: "hover:border-orange-500/50",
     tags: ["React.js", "Tailwind CSS", "Context API", "Local Storage Engine"],
     liveUrl: "https://ubiquitous-cat-f5fa76.netlify.app/",
   },
@@ -30,7 +28,6 @@ const PROJECTS = [
       "An immersive, interactive 3D animated digital showroom showcasing next-gen electronics. Engineered with WebGL-backed product viewing spaces, micro-soldering gear showcases, and custom responsive animation states using modular UI structures.",
     color: "red",
     hex: "#ef4444",
-    hoverBorder: "hover:border-red-500/50",
     tags: ["React.js", "Three.js", "React Three Fiber", "Tailwind CSS"],
     liveUrl: "https://sprightly-granita-7a510c.netlify.app/",
   },
@@ -56,7 +53,7 @@ export default function ProjectsShowcase() {
           {PROJECTS.map((project) => (
             <div
               key={project.id}
-              className={`group relative bg-slate-950/40 border border-slate-800/60 backdrop-blur-xl rounded-3xl p-6 overflow-hidden flex flex-col justify-between h-96 transition-all duration-300 ${project.hoverBorder}`}
+              className={`group relative bg-slate-950/40 border border-slate-800/60 backdrop-blur-xl rounded-3xl p-6 overflow-hidden flex flex-col justify-between h-96 transition-all duration-300`}
             >
               {/* The Cosmic Shadow Spread (Pseudo-element equivalent) */}
               <div
@@ -79,11 +76,20 @@ export default function ProjectsShowcase() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 group-hover:bg-white group-hover:text-slate-950 transition-all duration-300 group-hover:scale-110 active:scale-95 text-white"
+                    className="relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 transition-all duration-300 group-hover:scale-110 active:scale-95 text-white pointer-events-auto"
+                    style={{
+                      "--accent-rgb": project.color === "cyan" ? "6, 182, 212" : project.color === "orange" ? "249, 115, 22" : "239, 68, 68",
+                    }}
                   >
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[20px] transition-all duration-500 ease-out pointer-events-none rounded-full"
+                      style={{
+                        background: "radial-gradient(circle, rgba(var(--accent-rgb), 0.25) 0%, rgba(var(--accent-rgb), 0.05) 50%, transparent 80%)",
+                      }}
+                    />
                     <ArrowUpRight
                       size={18}
-                      className="group-hover:rotate-45 transition-transform duration-300"
+                      className="relative z-10 group-hover:rotate-45 transition-transform duration-300"
                     />
                   </a>
                 </div>

@@ -1,7 +1,7 @@
 import { useScroll, useTransform, useSpring, motion } from "framer-motion";
 import SpaceBG from "./components/SpaceBG";
 import OrbitSystem from "./components/OrbitSystem";
-import AboutBento from "./components/AboutBento";
+import AboutCard from "./components/AboutCard";
 import TechConveyorBelt from "./components/TechConveyorBelt";
 import ProjectsShowcase from "./components/ProjectsShowcase";
 import "./index.css";
@@ -199,7 +199,7 @@ export default function App() {
 
         {/* Actual bento content sits above the backdrop */}
         <div className="relative">
-          <AboutBento />
+          <AboutCard />
           <TechConveyorBelt />
           <ProjectsShowcase />
         </div>
