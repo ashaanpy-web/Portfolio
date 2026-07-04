@@ -87,8 +87,7 @@ export default function App() {
      * No overflow-hidden here — the scroll must propagate naturally.
      */
     <div
-      className="relative w-full font-space"
-      style={{ backgroundColor: "#020617" }}
+      className="relative w-full font-space bg-transparent"
     >
       {/* ══════════════════════════════════════════════════════════
           LAYER 0 — SpaceBG
@@ -189,13 +188,7 @@ export default function App() {
         className="relative w-full pointer-events-auto"
         style={{ zIndex: 30 }}
       >
-        {/*
-         * The solid dark glass surface backdrop.
-         * This is the "physical layer" that cuts over the 3D space field.
-         * Separate from AboutBento's content so backdrop-blur applies
-         * correctly without interfering with inner card backdrops.
-         */}
-        <div className="absolute inset-0 w-full h-full bg-slate-950/70 backdrop-blur-2xl pointer-events-none" />
+        {/* The solid dark glass surface backdrop has been removed to allow the SpaceBG to render natively through the entire scroll flow. */}
 
         {/* Actual bento content sits above the backdrop */}
         <div className="relative">

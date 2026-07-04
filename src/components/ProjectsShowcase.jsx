@@ -35,7 +35,7 @@ const PROJECTS = [
 
 export default function ProjectsShowcase() {
   return (
-    <section className="relative w-full py-24 pointer-events-auto z-20">
+    <section className="relative w-full py-24 pointer-events-auto z-20 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
 
         {/* Section Header */}
@@ -53,7 +53,7 @@ export default function ProjectsShowcase() {
           {PROJECTS.map((project) => (
             <div
               key={project.id}
-              className={`group relative bg-slate-950/40 border border-slate-800/60 backdrop-blur-xl rounded-3xl p-6 overflow-hidden flex flex-col justify-between h-96 transition-all duration-300`}
+              className={`group relative bg-slate-950/40 border border-slate-800/60 backdrop-blur-md rounded-3xl p-6 overflow-hidden flex flex-col justify-between h-96 transition-all duration-300 transform-gpu will-change-transform`}
             >
               {/* The Cosmic Shadow Spread (Pseudo-element equivalent) */}
               <div

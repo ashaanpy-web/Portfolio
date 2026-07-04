@@ -38,7 +38,7 @@ function RotatingStars() {
 export default function SpaceBG() {
   return (
     <div
-      className="fixed inset-0 w-full h-full pointer-events-none bg-slate-950"
+      className="fixed inset-0 w-screen h-screen pointer-events-none"
       style={{ zIndex: 0 }}
       aria-hidden="true"
     >

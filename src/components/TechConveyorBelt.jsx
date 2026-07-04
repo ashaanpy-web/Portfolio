@@ -29,7 +29,7 @@ export default function TechConveyorBelt() {
   );
 
   return (
-    <section className="relative w-full h-40 md:h-48 overflow-hidden pointer-events-auto z-20 flex items-center justify-center">
+    <section className="relative w-full h-40 md:h-48 overflow-hidden pointer-events-auto z-20 flex items-center justify-center bg-transparent">
       <div className="absolute top-1/2 left-[-5vw] w-[110vw] -translate-y-1/2 rotate-[-2.5deg] bg-[#f97316] shadow-2xl shadow-orange-500/20 flex items-center h-20 md:h-24">
         <motion.div
           className="flex whitespace-nowrap items-center w-max"
