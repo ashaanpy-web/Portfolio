@@ -167,17 +167,11 @@ export default function AboutCard() {
                   {/* Data Lines */}
                   <div className="flex flex-col gap-2.5 font-mono text-[10px] uppercase w-full">
                     <div className="flex justify-between border-b border-slate-800/80 pb-1.5">
-                      <span className="text-slate-500 tracking-wider">Name</span>
-                      <span className="text-white font-medium">ASHAAN</span>
+
+                      <span className="text-white text-3xl m-auto  font-chakra uppercase tracking-widest mt-3 font-bold">ASHAAN</span>
                     </div>
-                    <div className="flex justify-between border-b border-slate-800/80 pb-1.5">
-                      <span className="text-slate-500 tracking-wider">Role</span>
-                      <span className="text-cyan-400 font-medium tracking-wide">SYSTEM DEVELOPER</span>
-                    </div>
-                    <div className="flex justify-between border-b border-slate-800/80 pb-1.5">
-                      <span className="text-slate-500 tracking-wider">Core</span>
-                      <span className="text-slate-300">CORE_CS_ENGINE</span>
-                    </div>
+
+
                   </div>
 
                 </motion.div>
