@@ -93,3 +93,47 @@ body {
 .orbit-ring-pulse {
   animation: orbit-pulse 4s ease-in-out infinite;
 }
+
+/* ── Liquid Glass Card — GPU compositor declaration ───────────────── */
+.liquid-glass-card {
+  will-change: filter;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* Smooth filter transitions on mount/unmount */
+  transition: filter 300ms ease, box-shadow 300ms ease;
+}
+
+/* ── Chromatic fringe shimmer animation ───────────────────────────── */
+@keyframes chroma-shift {
+  0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+  50%       { filter: hue-rotate(8deg) brightness(1.04); }
+}
+
+/* ── Bento card: liquid glass variant ────────────────────────────── */
+.bento-card-glow {
+  will-change: filter, box-shadow;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition: filter 300ms ease, box-shadow 300ms ease;
+}
+
+/* Override old ::before pseudo for glass cards — shimmer instead of flat glow */
+.bento-card-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 30% 0%,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(6, 182, 212, 0.04) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 350ms ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.bento-card-glow:hover::before {
+  opacity: 1;
+}

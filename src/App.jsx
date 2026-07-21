@@ -1,7 +1,9 @@
 import { useScroll, useTransform, useSpring, motion } from "framer-motion";
+import { useDevicePerf } from "./hooks/useDevicePerf";
 import SpaceBG from "./components/SpaceBG";
 import OrbitSystem from "./components/OrbitSystem";
 import AboutCard from "./components/AboutCard";
+import AboutBento from "./components/AboutBento";
 import TechConveyorBelt from "./components/TechConveyorBelt";
 import ProjectsShowcase from "./components/ProjectsShowcase";
 import "./index.css";
@@ -35,6 +37,9 @@ import "./index.css";
  * ╚══════════════════════════════════════════════════════════════════╝
  */
 export default function App() {
+  const { lowEnd, reduceMotion } = useDevicePerf();
+  const showGlow = !lowEnd;
+
   // ── Raw scroll progress across entire document (0 → 1) ──────────
   const { scrollYProgress } = useScroll();
 
@@ -74,7 +79,7 @@ export default function App() {
   const phase2Opacity = useTransform(
     smooth,
     [0.12, 0.3, 0.65, 0.85],
-    [0, 1, 1, 0]
+    [0, 1, 1, 0],
   );
 
   // Phase 3 opacity: Velvet purple — takes over in deep scroll
@@ -86,9 +91,7 @@ export default function App() {
      * Root wrapper: position relative, full width, dark base color.
      * No overflow-hidden here — the scroll must propagate naturally.
      */
-    <div
-      className="relative w-full font-space bg-transparent"
-    >
+    <div className="relative w-full font-space bg-transparent">
       {/* ══════════════════════════════════════════════════════════
           LAYER 0 — SpaceBG
           Fixed, full-viewport Three.js starfield. Stays behind
@@ -103,19 +106,7 @@ export default function App() {
           will-change: opacity → GPU compositor layer each.
           ══════════════════════════════════════════════════════════ */}
 
-      {/* Phase 1: Deep space vacuum — pure transparent, structural placeholder */}
-      <motion.div
-        className="glow-overlay fixed inset-0 w-full h-full pointer-events-none"
-        style={{
-          zIndex: 10,
-          opacity: phase1Opacity,
-          background: "rgba(2, 6, 23, 0)",
-        }}
-        aria-hidden="true"
-      />
 
-      {/* Phase 2: Cinematic cyan + indigo cyber-matrix glow */}
-      <motion.div
         className="glow-overlay fixed inset-0 w-full h-full pointer-events-none"
         style={{
           zIndex: 11,
@@ -127,7 +118,6 @@ export default function App() {
       />
 
       {/* Phase 3: Deep velvet-slate shadow — takes over in deep scroll */}
-      <motion.div
         className="glow-overlay fixed inset-0 w-full h-full pointer-events-none"
         style={{
           zIndex: 12,
@@ -164,7 +154,7 @@ export default function App() {
             transformOrigin: "center center",
           }}
         >
-          <OrbitSystem />
+          <OrbitSystem lowEnd={lowEnd || reduceMotion} />
         </motion.div>
       </div>
 
@@ -193,6 +183,7 @@ export default function App() {
         {/* Actual bento content sits above the backdrop */}
         <div className="relative">
           <AboutCard />
+          <AboutBento />
           <TechConveyorBelt />
           <ProjectsShowcase />
         </div>

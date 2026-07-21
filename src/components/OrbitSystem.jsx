@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import { motion } from "framer-motion";
+import { useDevicePerf } from "../hooks/useDevicePerf";
 import { premiumViewportVariants } from "../utils/animations";
 import {
   Atom,
@@ -19,14 +20,14 @@ const ORBIT_RADIUS = 3.6;
 const ORBIT_SPEED = 0.28;
 
 const ICON_MAP = [
-  { Icon: Atom,        color: "#06b6d4", step: 0 },
-  { Icon: Server,      color: "#4ade80", step: 1 },
-  { Icon: Wind,        color: "#38bdf8", step: 2 },
-  { Icon: Clapperboard,color: "#a855f7", step: 3 },
-  { Icon: Braces,      color: "#facc15", step: 4 },
-  { Icon: GitBranch,   color: "#e2e8f0", step: 5 },
-  { Icon: Code2,       color: "#f97316", step: 6 },
-  { Icon: Layers,      color: "#ec4899", step: 7 },
+  { Icon: Atom, color: "#06b6d4", step: 0 },
+  { Icon: Server, color: "#4ade80", step: 1 },
+  { Icon: Wind, color: "#38bdf8", step: 2 },
+  { Icon: Clapperboard, color: "#a855f7", step: 3 },
+  { Icon: Braces, color: "#facc15", step: 4 },
+  { Icon: GitBranch, color: "#e2e8f0", step: 5 },
+  { Icon: Code2, color: "#f97316", step: 6 },
+  { Icon: Layers, color: "#ec4899", step: 7 },
 ];
 
 const ANGLE_STEP = (Math.PI * 2) / ICON_MAP.length; // Exactly 2π/8
@@ -135,7 +136,43 @@ function HeroCenterText() {
  * Positioned absolute inside its parent scroll-linked wrapper.
  * pointer-events-none: all click events pass to underlying elements.
  */
-export default function OrbitSystem() {
+export default function OrbitSystem({ lowEnd = false }) {
+  const { prefersReducedMotion } = useDevicePerf();
+  const disableAnimation = lowEnd || prefersReducedMotion;
+
+  if (disableAnimation) {
+    return (
+      <motion.section
+        variants={premiumViewportVariants}
+        initial="hidden"
+        whileInView="visible"
+        exit="exit"
+        viewport={{ once: true }}
+        className="absolute inset-0 w-full h-full pointer-events-none hero-layer"
+        aria-hidden="true"
+      >
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+          <span className="font-space font-semibold uppercase text-cyan-400 tracking-[0.28em] text-[0.65rem] mb-4">
+            Creative Frontend Dev
+          </span>
+          <h1
+            className="font-chakra font-bold uppercase text-white"
+            style={{
+              fontSize: "clamp(3.5rem, 9vw, 6.5rem)",
+              letterSpacing: "0.1em",
+              lineHeight: 1,
+            }}
+          >
+            ASHAAN
+          </h1>
+          <p className="mt-4 text-slate-400 uppercase tracking-[0.32em] text-[0.55rem]">
+            Component System V2.2
+          </p>
+        </div>
+      </motion.section>
+    );
+  }
+
   return (
     <motion.section
       variants={premiumViewportVariants}
@@ -153,10 +190,10 @@ export default function OrbitSystem() {
           antialias: true,
           powerPreference: "high-performance",
         }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
       >
-        <ambientLight intensity={1.6} />
-        <pointLight position={[0, 5, 5]} intensity={0.6} color="#06b6d4" />
+        <ambientLight intensity={1.4} />
+        <pointLight position={[0, 5, 5]} intensity={0.55} color="#06b6d4" />
 
         {/* Static orbit ring */}
         <OrbitRing />
